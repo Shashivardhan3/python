@@ -1,0 +1,472 @@
+<section class="main-content">
+  <ul class="breadcrumb breadcrumb-style ">
+    <li class="breadcrumb-item">
+      <h5 class="page-title m-b-0">Lookup Type</h5>
+    </li>
+    <li class="breadcrumb-item bcrumb-1">
+      <a routerLink="/dashboard/main">
+        <i class="fas fa-home font-17"></i></a>
+    </li>
+    <li class="breadcrumb-item">Lookup type</li>
+  </ul>
+  <div class="section-body">
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="p-10">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="row m-0">
+                  <div class="col-lg-3 p-0">
+                    <div class="ngxTableHeader">
+                      <div class="table-title">
+                        <h2><strong>Lookup type</strong></h2>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-9 p-0">
+                    <div class="ngxTableHeader">
+                      <!-- <div class="table-search-area">
+                        <div>
+                          <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                          <input placeholder="Search" type="text" class="browser-default search-field"
+                            (keyup)='filterDatatable($event)' aria-label="Search box">
+                        </div>
+                      </div> -->
+                      <div class="header-buttons-left">
+                        <div class="tbl-btn-style">
+                          <button class="btn btn-icon icon-left btn-primary rounded-button" (click)='addRow(addRecord)'>
+                            <i class="material-icons">add</i>
+                          </button>
+                          <button [hidden]=!isRowSelected class="btn btn-icon icon-left btn-danger rounded-button"
+                            (click)='deleteSelected()'>
+                            <i class="material-icons">delete</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ngx-datatable #table class="material" [rows]="data" [loadingIndicator]="loadingIndicator"
+              columnMode="force" [headerHeight]="60" [footerHeight]="80" rowHeight="auto" [limit]="10"
+              [scrollbarH]="scrollBarHorizontal" [reorderable]="reorderable" [selected]="selected"
+              [selectionType]="'checkbox'" (select)='onSelect($event)'>
+
+              <ngx-datatable-column [width]="70" [sortable]="false" [draggable]="false" [resizeable]="false"
+                [canAutoResize]="false" [headerCheckboxable]="true" [checkboxable]="true">
+              </ngx-datatable-column>
+
+              <!-- <ngx-datatable-column [width]="200" name="Name">
+                <ng-template let-row="row" let-value="value" let-i="index" ngx-datatable-cell-template>
+                  <img src="{{ row.img }}" class="data-table-img" />
+                  <div class="name-col-style">
+                    <div>{{row.docid}} {{row.docname}}</div>
+                    <div class="font-12 text-muted">{{row.designation}}</div>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column> -->
+              <!-- <ngx-datatable-column name="Document ID" [width]="100">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.docid}}
+                </ng-template>
+              </ngx-datatable-column> -->
+              <ngx-datatable-column name="lookuptypename">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.lookuptypename}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="shortname">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.shortname}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="parent">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.parent}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="parent ID">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.parentid}}
+                </ng-template>
+              </ngx-datatable-column> 
+              <!-- <ngx-datatable-column name="lookuptype">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.lookuptype}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="lookuptypeid">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.lookuptypeid}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="ltypeparent">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.ltypeparent}}
+                </ng-template>
+              </ngx-datatable-column> -->
+              <ngx-datatable-column name="description">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.description}}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <!-- <ngx-datatable name="Documentobjectid">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.objid}}
+                </ng-template>
+              </ngx-datatable>
+               -->
+              
+              
+              <!-- <ngx-datatable-column name="File Format">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.filefrmt}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Document path">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.docpath}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Filename">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.docfname}}
+                </ng-template>
+              </ngx-datatable-column>
+              
+              <ngx-datatable-column name="Attachment">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.attachment}}
+                </ng-template>
+              </ngx-datatable-column> -->
+              <!-- <ngx-datatable-column name="Createdby">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.createdby}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Lastmodifiedby">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{row.modifiedby}}
+                </ng-template>
+              </ngx-datatable-column> -->
+              <ngx-datatable-column [width]="100" name="Actions" sortable="false">
+                <ng-template let-value="value" let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                  <span>
+                    <button class="btn btn-tbl-edit h-auto" (click)='editRow(row, rowIndex, editRecord)'>
+                      <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-tbl-delete h-auto" (click)='deleteSingleRow(row)'>
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                  </span>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+            <!-- Add Record Modal Window -->
+            <ng-template #addRecord let-modal>
+              <div class="modal-header editRowModal">
+                <h4 class="modal-title" id="modal-basic-title">
+                  <div class="table-modal-header">
+                    <img [src]='newUserImg' alt="avatar">
+                    <div class="modal-about">
+                      <div class="fw-bold p-t-10 font-17">
+                       Document Format</div>
+                    </div>
+                  </div>
+                </h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                  <span aria-hidden="true"><i class="material-icons">close</i></span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form class="register-form" [formGroup]="register" (ngSubmit)="onAddRowSave(register)">
+                  <div class="input-field col s12 d-none">
+                    <input formControlName="id" class="form-control" type="hidden">
+                  </div>
+                  <div class="input-field col s12 d-none">
+                    <input formControlName="img" class="form-control" type="hidden">
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>lookupname<span class="text-danger">*</span></label>
+                      <!-- <input type="number" class="form-control" placeholder="Document Formate" formControlName="docid"
+                        required> -->
+                        <select class="form-control"  placeholder="lookupname" formControlName="lookupname" required>
+                          <option value="" disabled selected>Select lookupname</option>
+                          <option *ngFor="let doctype of documenttype" [value]="doctype.value">
+                            {{doctype.value}}
+                          </option>
+                        </select>  
+                      <!-- <small class="form-text text-danger"
+                        *ngIf="!register.get('docid').valid && register.get('docid').touched"> Document Formate is
+                        required</small> -->
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>Document Formate <span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="DocumentFormate" formControlName="docname">
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('docname').valid && register.get('docname').touched"> Document Formate is
+                        required</small>
+                    </div> -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>shortname<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="shortname" formControlName="shortname">
+                      <!-- <select class="form-control" formControlName="shortname" required>
+                        <option value="" disabled selected>Select Document Type</option>
+                        <option *ngFor="let doctype of documenttype" [value]="doctype.value">
+                          {{shortname.value}}
+                        </option>
+                      </select> -->
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('doctype').valid && register.get('doctype').touched"> shortname  is
+                        required</small>
+                    </div> 
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>parent <span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" placeholder="parent " formControlName="parent" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('parent').valid && register.get('parent').touched"> parent  is required</small>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                    <label>parentid ID<span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" placeholder="parentid ID" formControlName="parentid" required>
+                    <small class="form-text text-danger"
+                      *ngIf="!register.get('parentid').valid && register.get('parentid').touched"> parent ID is required</small>
+                  </div>
+                  <div class="row">
+                    
+                    
+                    
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>lookuptype<span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" placeholder="lookuptype" formControlName="lookuptype" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('parentid').valid && register.get('parentid').touched"> parent ID is required</small>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>lookuptypeid<span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" placeholder="lookuptypeid" formControlName="lookuptypeid" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('lookuptypeid').valid && register.get('lookuptypeid').touched"> lookuptype ID is required</small>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>ltypeparent<span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" placeholder="ltypeparent" formControlName="ltypeparent" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('ltypeparent').valid && register.get('ltypeparent').touched"> ltypeparent  is required</small>
+                    </div> -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>description <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="description" formControlName="description" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('description').valid && register.get('description').touched"> description is
+                        required</small>
+                    </div>     
+                  </div>
+                  <div class="row">
+                    
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>File Format<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Fileformate" formControlName="filefrmt" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('filefrmt').valid && register.get('filefrmt').touched"> Please enter a valid
+                         file name</small>
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>Document Path <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Documentpath" formControlName="docpath" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('docpath').valid && register.get('docpath').touched"> Document Path is
+                        required</small>
+                      <select class="form-select form-control" formControlName="designation" required>
+                        <option value="" selected disabled>Please select</option>
+                        <option *ngFor="let desig of designationType" [value]="desig.value">
+                          {{desig.value}}
+                        </option>
+                      </select>
+                    </div> -->
+                  </div>
+                  <div class="row">
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>File Name<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Filename" formControlName="docfname" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('docfname').valid && register.get('docfname').touched"> Please enter a valid
+                         file name</small>
+                    </div> -->
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>File Name<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Filename" formControlName="docfname" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('docfname').valid && register.get('docfname').touched"> Please enter a valid
+                         file name</small>
+                    </div> -->
+                    
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>Attachment <span class="text-danger">*</span></label>
+                      <input type="file" class="form-control" placeholder="Attachment" formControlName="attachment" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('attachment').valid && register.get('attachment').touched"> Please enter a valid
+                         Attachment</small>
+                    </div> -->
+                  </div>
+                  <!-- <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <label>Swift Code<span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="Swiftcode" formControlName="Swiftcode" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('Swiftcode').valid && register.get('Swiftcode').touched"> Please enter a valid
+                         Swift Code</small>
+                        
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <label>Contact Address<span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="ContactAddress" formControlName="ContactAddress" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('ContactAddress').valid && register.get('ContactAddress').touched"> Please enter a valid
+                         Contact Address</small>
+                    </div>
+                  </div> -->
+                  <!-- <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <label>Created By<span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="CreatedBy" formControlName="createdby" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('createdby').valid && register.get('createdby').touched"> Created By
+                      </small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                      <label>Last Modified By<span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="LastModifiedBy" formControlName="modifiedby" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('modifiedby').valid && register.get('modifiedby').touched"> Last Modified By
+                      </small>
+                    </div>
+                  </div> -->
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="register.valid">Submit</button>
+                    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+            <!-- Edit Record Modal Window -->
+            <ng-template #editRecord let-modal>
+              <div class="modal-header editRowModal">
+                <h4 class="modal-title" id="modal-basic-title">
+                  <div class="table-modal-header">
+                    <img [src]='selectedRowData?.img' alt="avatar">
+                    <div class="modal-about">
+                      <div class="fw-bold p-t-10 font-17">
+                        {{selectedRowData?.docid}}
+                      </div>
+                    </div>
+                  </div>
+                </h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true"><i class="material-icons">close</i></span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="editForm" (ngSubmit)="onEditSave(editForm)">
+                  <div class="input-field col s12 d-none">
+                    <input formControlName="id" class="form-control" type="hidden">
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>lookuptypename<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="lookuptypename" formControlName="lookuptypename"
+                        required>
+                      <small class="form-text text-danger"
+                        *ngIf="!editForm.get('docid').valid && editForm.get('docid').touched"> lookuptypename  is
+                        required</small>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>shortname<span class="text-danger"></span></label>
+                      <input type="text" class="form-control" placeholder="shortname" formControlName="shortname">
+                      <!-- <small class="form-text text-danger"
+                        *ngIf="!editForm.get('docname').valid && editForm.get('docname').touched"> Document name is
+                        required</small> -->
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>Document Type<span class="text-danger">*</span></label>
+                      <select class="form-control" formControlName="doctype" required>
+                        <option value="" disabled selected>Select Document Type</option>
+                        <option *ngFor="let doctype of documenttype" [value]="doctype.value">
+                          {{doctype.value}}
+                        </option>
+                      </select>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('doctype').valid && register.get('doctype').touched"> Document Type is
+                        required</small>
+                    </div> -->
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>parent<span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" placeholder="parent" formControlName="parent" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('userid').valid && register.get('userid').touched">parent is required</small>
+                    </div>
+                    
+                    
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>parentid<span class="text-danger">*</span></label>
+                      <input type="number" class="form-control" placeholder="parentid" formControlName="parentid" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('companyid').valid && register.get('companyid').touched"> parentid  is required</small>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>description <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="description" formControlName="description" required>
+                      <!-- <small class="form-text text-danger"
+                        *ngIf="!editForm.get('filefrmt').valid && editForm.get('filefrmt').touched"> Please enter a valid
+                        File Formate</small> -->
+                    </div>
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>Document Path<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Documentpath" formControlName="docpath" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!editForm.get('docpath').valid && editForm.get('docpath').touched"> Please enter a valid
+                        Document path</small>
+                    </div> -->
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>File Name <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="Filename" formControlName="docfname" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!editForm.get('docfname').valid && editForm.get('docfname').touched"> Please enter a valid
+                        File Name</small>
+                    </div> -->
+                    
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
+                      <label>Attachment <span class="text-danger">*</span></label>
+                      <input type="file" class="form-control" placeholder="Attachment" formControlName="attachment" required>
+                      <small class="form-text text-danger"
+                        *ngIf="!register.get('attachment').valid && register.get('attachment').touched"> Please enter a valid
+                         Attachment</small>
+                    </div> -->
+                  </div> 
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Save</button>
+                    <button type="button" class="btn btn-light" (click)="modal.close()">Close</button>
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
